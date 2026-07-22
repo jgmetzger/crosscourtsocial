@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>document.documentElement.className="js"</script>
 <title>Crosscourt Social — Mallorca's padel community</title>
 <link rel="stylesheet" href="styles.css">
 <style>
@@ -15,7 +15,7 @@ h1,h2,h3,p{margin:0}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-body);font-weight:600;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .12s ease,color .12s ease,transform .12s ease;white-space:nowrap;font-size:16px;line-height:1;padding:15px 26px}
-.btn:active{transform:translateY(.5px)}
+.btn:active{transform:scale(.97)}
 .btn-primary{background:var(--ccs-indigo);color:#fff}
 .btn-primary:hover{background:var(--ccs-indigo-ink)}
 .btn-ghost{background:transparent;color:var(--ccs-ink);border-color:var(--ccs-ink)}
@@ -157,6 +157,79 @@ h1,h2,h3,p{margin:0}
 /* icons */
 svg.ic-svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
+/* ============ motion & interaction ============ */
+section[id]{scroll-margin-top:88px}
+
+/* buttons: hover + press */
+.btn-primary,.btn-bone,.btn-teal{transition:background .12s ease,color .12s ease,transform .2s var(--ease-out),box-shadow .2s var(--ease-out)}
+
+/* nav condense on scroll */
+.nav-in{transition:height .3s var(--ease-standard)}
+.brand img{transition:height .3s var(--ease-standard)}
+.nav.scrolled{box-shadow:0 4px 24px rgba(14,16,32,.07)}
+.nav.scrolled .nav-in{height:60px}
+.nav.scrolled .brand img{height:28px}
+.nav-links a.n{transition:color .2s ease}
+.nav-links a.n.active{color:var(--ccs-indigo)}
+
+/* hero entrance + parallax */
+.js .hero-img{opacity:0;transform:scale(1.14);animation:ccFade 1.2s ease .05s forwards}
+.js .hero-in>*{opacity:0;transform:translateY(22px);animation:ccUp .85s var(--ease-out) forwards}
+.js .hero-in>*:nth-child(1){animation-delay:.15s}
+.js .hero-in>*:nth-child(2){animation-delay:.28s}
+.js .hero-in>*:nth-child(3){animation-delay:.41s}
+.js .hero-in>*:nth-child(4){animation-delay:.54s}
+@keyframes ccUp{to{opacity:1;transform:none}}
+@keyframes ccFade{to{opacity:1}}
+
+/* scroll reveals */
+.js .problem h2,.js .problem .body,.js .center-cta,.js .sec-head,.js .step,.js .gcard,.js .faq-item,.js .final .in{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.js .problem h2.vis,.js .problem .body.vis,.js .center-cta.vis,.js .sec-head.vis,.js .step.vis,.js .gcard.vis,.js .faq-item.vis,.js .final .in.vis{opacity:1;transform:none}
+.js .bcard,.js .tcard{opacity:0;filter:blur(6px);transition:opacity .6s var(--ease-out),filter .6s var(--ease-out),transform .25s var(--ease-out),box-shadow .25s var(--ease-out),border-color .25s ease}
+.js .bcard.vis,.js .tcard.vis{opacity:1;filter:none}
+.js .steps .step:nth-child(2){transition-delay:.09s}
+.js .steps .step:nth-child(3){transition-delay:.18s}
+.js .bgrid .bcard:nth-child(2){transition-delay:.07s}
+.js .bgrid .bcard:nth-child(3){transition-delay:.14s}
+.js .bgrid .bcard:nth-child(4){transition-delay:.21s}
+.js .tgrid .tcard:nth-child(2){transition-delay:.09s}
+.js .tgrid .tcard:nth-child(3){transition-delay:.18s}
+
+/* hover lifts — fine pointers only */
+@media (hover:hover) and (pointer:fine){
+  .bcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+  .tcard:hover{transform:translateY(-4px);border-color:rgba(245,241,234,.32)}
+  .btn-primary:hover,.btn-bone:hover,.btn-teal:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .step .num{transition:transform .25s var(--ease-out)}
+  .step:hover .num{transform:translateY(-3px)}
+}
+
+/* passport 3D tilt */
+.gcard .in{perspective:1100px}
+.passport{transform-style:preserve-3d;transition:transform .3s var(--ease-out);will-change:transform}
+.passport .top,.passport>div:last-child{transform:translateZ(26px)}
+
+/* location marquee */
+.marquee{background:var(--ccs-ink);overflow:hidden;border-bottom:1px solid var(--border-on-ink)}
+.marquee-track{display:flex;width:max-content;animation:ccMarq 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-item{display:inline-flex;align-items:center;gap:16px;padding:15px 26px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-on-ink-muted);white-space:nowrap}
+.marquee-item .sep{width:5px;height:5px;border-radius:50%;background:var(--ccs-teal)}
+@keyframes ccMarq{to{transform:translateX(-50%)}}
+
+/* count-up */
+.count{font-variant-numeric:tabular-nums}
+
+/* reduced motion — keep opacity, drop movement */
+@media (prefers-reduced-motion:reduce){
+  .js .hero-img,.js .hero-in>*{animation:none;opacity:1;transform:none}
+  .js .problem h2,.js .problem .body,.js .center-cta,.js .sec-head,.js .step,.js .gcard,.js .faq-item,.js .final .in,.js .bcard,.js .tcard{opacity:1!important;transform:none!important;filter:none!important;transition:none}
+  .marquee-track{animation:none}
+  .passport{transition:none}
+  .btn:active{transform:none}
+  html{scroll-behavior:auto}
+}
+
 @media(max-width:920px){
   .bgrid{grid-template-columns:repeat(2,1fr)}
   .gcard .in{grid-template-columns:1fr;padding:40px 32px}
@@ -234,9 +307,15 @@ svg.ic-svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8
       <a class="btn btn-primary" href="#" data-checkout>Become a Member — €20/month</a>
       <a class="btn btn-ghost ghost-onimg" href="#global">Join the Global Waitlist</a>
     </div>
-    <div class="trust"><span>1,500+ players in the network</span><span class="dot"></span><span>Playing every week across Mallorca</span></div>
+    <div class="trust"><span><span class="count" data-count="1500" data-suffix="+">0</span> players in the network</span><span class="dot"></span><span>Playing every week across Mallorca</span></div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<section class="marquee" aria-hidden="true"><div class="marquee-track">
+  <span class="marquee-item">Palma<span class="sep"></span></span><span class="marquee-item">Santa Ponsa<span class="sep"></span></span><span class="marquee-item">Puerto Portals<span class="sep"></span></span><span class="marquee-item">Andratx<span class="sep"></span></span><span class="marquee-item">Sóller<span class="sep"></span></span><span class="marquee-item">Alcúdia<span class="sep"></span></span><span class="marquee-item">Manacor<span class="sep"></span></span><span class="marquee-item">Calvià<span class="sep"></span></span><span class="marquee-item">Pollença<span class="sep"></span></span><span class="marquee-item">Llucmajor<span class="sep"></span></span>
+  <span class="marquee-item">Palma<span class="sep"></span></span><span class="marquee-item">Santa Ponsa<span class="sep"></span></span><span class="marquee-item">Puerto Portals<span class="sep"></span></span><span class="marquee-item">Andratx<span class="sep"></span></span><span class="marquee-item">Sóller<span class="sep"></span></span><span class="marquee-item">Alcúdia<span class="sep"></span></span><span class="marquee-item">Manacor<span class="sep"></span></span><span class="marquee-item">Calvià<span class="sep"></span></span><span class="marquee-item">Pollença<span class="sep"></span></span><span class="marquee-item">Llucmajor<span class="sep"></span></span>
+</div></section>
 
 <!-- PROBLEM -->
 <section class="problem"><div class="wrap">
@@ -409,5 +488,72 @@ wf.addEventListener('submit',function(e){
 });
 // checkout placeholders
 document.querySelectorAll('[data-checkout]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();/* -> Stripe checkout */})});
+
+// ---- motion & interaction ----
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var heroImg=document.querySelector('.hero-img');
+  var nav=document.querySelector('.nav');
+  var links=[].slice.call(document.querySelectorAll('.nav-links a.n'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+
+  // scroll reveals
+  var sels=['.problem h2','.problem .body','.center-cta','.sec-head','.step','.bcard','.tcard','.gcard','.faq-item','.final .in'];
+  var nodes=[];
+  sels.forEach(function(s){[].push.apply(nodes,document.querySelectorAll(s));});
+  if(reduce||!('IntersectionObserver' in window)){
+    nodes.forEach(function(n){n.classList.add('vis');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    nodes.forEach(function(n){io.observe(n);});
+    setTimeout(function(){nodes.forEach(function(n){n.classList.add('vis');});},3000); // safety net
+  }
+
+  // nav condense + parallax + active section
+  var ticking=false;
+  function onScroll(){
+    ticking=false;
+    var y=window.pageYOffset||0;
+    if(nav)nav.classList.toggle('scrolled',y>8);
+    if(heroImg&&!reduce)heroImg.style.transform='translate3d(0,'+Math.min(y*0.06,60)+'px,0) scale(1.14)';
+    var cur=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=120)cur=s.id;});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+  onScroll();
+
+  // animated count-up
+  function countUp(el){
+    var target=+el.getAttribute('data-count'),suf=el.getAttribute('data-suffix')||'';
+    if(reduce){el.textContent=target.toLocaleString('en-US')+suf;return;}
+    var dur=1400,start=null;
+    function step(t){if(!start)start=t;var p=Math.min((t-start)/dur,1);var e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*e).toLocaleString('en-US')+suf;if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  }
+  var counters=[].slice.call(document.querySelectorAll('.count'));
+  if('IntersectionObserver' in window){
+    var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);co.unobserve(e.target);}});},{threshold:.6});
+    counters.forEach(function(c){co.observe(c);});
+  }else counters.forEach(countUp);
+
+  // passport 3D tilt (mouse)
+  var card=document.querySelector('.global .gcard'),pass=document.querySelector('.passport');
+  if(card&&pass&&!reduce&&fine){
+    var raf=null,tx=0,ty=0;
+    function apply(){raf=null;pass.style.transform='rotateY('+(tx*9)+'deg) rotateX('+(-ty*9)+'deg)';}
+    card.addEventListener('mousemove',function(ev){
+      var r=card.getBoundingClientRect();
+      tx=(ev.clientX-r.left)/r.width-0.5;
+      ty=(ev.clientY-r.top)/r.height-0.5;
+      if(!raf)raf=requestAnimationFrame(apply);
+    });
+    card.addEventListener('mouseleave',function(){pass.style.transform='rotateY(0deg) rotateX(0deg)';});
+  }
+})();
 </script>
 </body></html>
