@@ -42,11 +42,21 @@ h1,h2,h3,p{margin:0}
 .menu-btn span{display:block;width:22px;height:2px;background:var(--ccs-ink);margin:4px 0}
 .mobile-menu{display:none}
 
-/* hero */
-.hero{position:relative;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
-.hero-img{position:absolute;inset:0;background:url(assets/photo-lifestyle-court.jpg) center/cover no-repeat, url(assets/pattern-court-ink.png) center/300px, linear-gradient(135deg,#1b1740 0%,#0E1020 62%);filter:saturate(1.02)}
-.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,16,32,.12) 0%,rgba(14,16,32,.30) 45%,rgba(14,16,32,.82) 100%)}
-.hero-in{position:relative;z-index:2;width:100%;padding:64px 32px 56px;color:var(--ccs-bone)}
+/* hero — near-full-bleed media in a subtle serpentine frame */
+.hero{position:relative;min-height:640px;height:86vh;max-height:900px;display:flex;align-items:flex-end;overflow:hidden;background:#0B0D18}
+.hero-pat{position:absolute;inset:0;background:url(assets/pattern-court-ink.png) center/300px;opacity:.10}
+.hero-frame{position:absolute;inset:24px;
+  -webkit-mask:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 780' preserveAspectRatio='none'><path d='M96,14 C480,-6 960,30 1344,10 C1420,6 1436,20 1432,92 C1448,300 1424,520 1434,688 C1436,744 1416,768 1346,764 C940,788 480,752 94,772 C24,776 6,756 10,690 C-6,500 26,280 8,90 C6,30 30,16 96,14 Z' fill='black'/></svg>") center/100% 100% no-repeat;
+          mask:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 780' preserveAspectRatio='none'><path d='M96,14 C480,-6 960,30 1344,10 C1420,6 1436,20 1432,92 C1448,300 1424,520 1434,688 C1436,744 1416,768 1346,764 C940,788 480,752 94,772 C24,776 6,756 10,690 C-6,500 26,280 8,90 C6,30 30,16 96,14 Z' fill='black'/></svg>") center/100% 100% no-repeat}
+/* swap this div for a muted looping <video> when footage is ready */
+.hero-media{position:absolute;inset:-6%;background:url(assets/photo-lifestyle-court.jpg) center/cover no-repeat;animation:ccKb 18s ease-in-out infinite alternate}
+@keyframes ccKb{from{transform:scale(1.04)}to{transform:scale(1.16)}}
+.hero-grade{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(11,13,24,.80) 0%,rgba(11,13,24,.30) 46%,rgba(11,13,24,.10) 100%),
+  linear-gradient(180deg,rgba(11,13,24,.10),rgba(11,13,24,.46) 100%)}
+.hero-echo{position:absolute;inset:13px;width:calc(100% - 26px);height:calc(100% - 26px);pointer-events:none;z-index:3;opacity:.55}
+.hero-echo path{fill:none;stroke:var(--ccs-teal);stroke-width:1.4;vector-effect:non-scaling-stroke}
+.hero-in{position:relative;z-index:4;width:100%;padding:64px 32px 104px;color:var(--ccs-bone)}
 .hero h1{font-size:76px;color:#fff}
 .hero p.sub{font-size:20px;line-height:1.5;max-width:560px;margin-top:22px;color:rgba(245,241,234,.92)}
 .hero-cta{display:flex;align-items:center;gap:18px;margin-top:34px;flex-wrap:wrap}
@@ -172,8 +182,10 @@ section[id]{scroll-margin-top:88px}
 .nav-links a.n{transition:color .2s ease}
 .nav-links a.n.active{color:var(--ccs-indigo)}
 
-/* hero entrance + parallax */
-.js .hero-img{opacity:0;transform:scale(1.14);animation:ccFade 1.2s ease .05s forwards}
+/* hero entrance + self-drawing hairline */
+.js .hero-media{opacity:0;animation:ccFade 1.1s ease .05s forwards,ccKb 18s ease-in-out .05s infinite alternate}
+.js .hero-echo path{stroke-dasharray:1;stroke-dashoffset:1;animation:ccDraw 1.9s var(--ease-standard) .55s forwards}
+@keyframes ccDraw{to{stroke-dashoffset:0}}
 .js .hero-in>*{opacity:0;transform:translateY(22px);animation:ccUp .85s var(--ease-out) forwards}
 .js .hero-in>*:nth-child(1){animation-delay:.15s}
 .js .hero-in>*:nth-child(2){animation-delay:.28s}
@@ -222,7 +234,8 @@ section[id]{scroll-margin-top:88px}
 
 /* reduced motion — keep opacity, drop movement */
 @media (prefers-reduced-motion:reduce){
-  .js .hero-img,.js .hero-in>*{animation:none;opacity:1;transform:none}
+  .js .hero-media,.hero-media,.js .hero-in>*{animation:none;opacity:1;transform:none}
+  .js .hero-echo path{animation:none;stroke-dasharray:none;stroke-dashoffset:0}
   .js .problem h2,.js .problem .body,.js .center-cta,.js .sec-head,.js .step,.js .gcard,.js .faq-item,.js .final .in,.js .bcard,.js .tcard{opacity:1!important;transform:none!important;filter:none!important;transition:none}
   .marquee-track{animation:none}
   .passport{transition:none}
@@ -243,7 +256,10 @@ section[id]{scroll-margin-top:88px}
   .mobile-menu .wrap{padding:16px 22px 22px;display:flex;flex-direction:column;gap:4px}
   .mobile-menu a{padding:12px 0;font-size:17px;font-weight:500;border-bottom:1px solid var(--ccs-line)}
   .mobile-menu .btn{margin-top:14px}
-  .hero{min-height:560px}
+  .hero{min-height:560px;height:82vh}
+  .hero-frame{inset:12px}
+  .hero-echo{inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
+  .hero-in{padding-bottom:72px}
   .hero h1{font-size:42px}
   .hero p.sub{font-size:17px}
   .hero-cta{gap:12px}
@@ -298,8 +314,14 @@ section[id]{scroll-margin-top:88px}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-img"></div>
-  <div class="hero-scrim"></div>
+  <div class="hero-pat"></div>
+  <div class="hero-frame">
+    <div class="hero-media"></div>
+    <div class="hero-grade"></div>
+  </div>
+  <svg class="hero-echo" viewBox="0 0 1440 780" preserveAspectRatio="none" aria-hidden="true">
+    <path pathLength="1" d="M96,14 C480,-6 960,30 1344,10 C1420,6 1436,20 1432,92 C1448,300 1424,520 1434,688 C1436,744 1416,768 1346,764 C940,788 480,752 94,772 C24,776 6,756 10,690 C-6,500 26,280 8,90 C6,30 30,16 96,14 Z"/>
+  </svg>
   <div class="wrap hero-in">
     <h1 class="display">Padel is better<br>with people.</h1>
     <p class="sub">Crosscourt Social is Mallorca's padel community. Organised weekly play, every level welcome, and a group of people who'll actually text you back about a game.</p>
@@ -493,7 +515,6 @@ document.querySelectorAll('[data-checkout]').forEach(function(a){a.addEventListe
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
-  var heroImg=document.querySelector('.hero-img');
   var nav=document.querySelector('.nav');
   var links=[].slice.call(document.querySelectorAll('.nav-links a.n'));
   var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
@@ -518,7 +539,6 @@ document.querySelectorAll('[data-checkout]').forEach(function(a){a.addEventListe
     ticking=false;
     var y=window.pageYOffset||0;
     if(nav)nav.classList.toggle('scrolled',y>8);
-    if(heroImg&&!reduce)heroImg.style.transform='translate3d(0,'+Math.min(y*0.06,60)+'px,0) scale(1.14)';
     var cur=null;
     secs.forEach(function(s){if(s.getBoundingClientRect().top<=120)cur=s.id;});
     links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
