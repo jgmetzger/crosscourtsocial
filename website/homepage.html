@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crosscourt Social — Mallorca's padel community</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ccs-bone);color:var(--ccs-ink);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ccs-indigo)}
+.serif{font-family:var(--font-serif);font-style:italic;font-weight:600}
+.display{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;line-height:1.02}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-body);font-weight:600;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .12s ease,color .12s ease,transform .12s ease;white-space:nowrap;font-size:16px;line-height:1;padding:15px 26px}
+.btn:active{transform:translateY(.5px)}
+.btn-primary{background:var(--ccs-indigo);color:#fff}
+.btn-primary:hover{background:var(--ccs-indigo-ink)}
+.btn-ghost{background:transparent;color:var(--ccs-ink);border-color:var(--ccs-ink)}
+.btn-ghost:hover{background:var(--ccs-ink);color:var(--ccs-bone)}
+.btn-bone{background:var(--ccs-bone);color:var(--ccs-ink)}
+.btn-bone:hover{background:#fff}
+.btn-teal{background:var(--ccs-teal);color:var(--ccs-ink)}
+.btn-teal:hover{background:#39b3ab}
+.btn-sm{padding:10px 18px;font-size:14px;border-radius:10px}
+.textlink{font-weight:600;color:var(--ccs-indigo);display:inline-flex;align-items:center;gap:6px}
+.textlink:hover{opacity:.72}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,234,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--ccs-line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:34px;width:auto}
+.brand .bt{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:.18em;text-transform:uppercase;line-height:1.1}
+.brand .bt small{display:block;font-size:9px;letter-spacing:.24em;color:var(--ccs-indigo)}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a.n{font-size:14.5px;font-weight:500;color:var(--ccs-ink-90)}
+.nav-links a.n:hover{color:var(--ccs-ink)}
+.menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ccs-ink);margin:4px 0}
+.mobile-menu{display:none}
+
+/* hero */
+.hero{position:relative;min-height:640px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url(assets/photo-lifestyle-court.jpg) center/cover no-repeat, url(assets/pattern-court-ink.png) center/300px, linear-gradient(135deg,#1b1740 0%,#0E1020 62%);filter:saturate(1.02)}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,16,32,.12) 0%,rgba(14,16,32,.30) 45%,rgba(14,16,32,.82) 100%)}
+.hero-in{position:relative;z-index:2;width:100%;padding:64px 32px 56px;color:var(--ccs-bone)}
+.hero h1{font-size:76px;color:#fff}
+.hero p.sub{font-size:20px;line-height:1.5;max-width:560px;margin-top:22px;color:rgba(245,241,234,.92)}
+.hero-cta{display:flex;align-items:center;gap:18px;margin-top:34px;flex-wrap:wrap}
+.hero .ghost-onimg{color:#fff;border-color:rgba(245,241,234,.55)}
+.hero .ghost-onimg:hover{background:#fff;color:var(--ccs-ink)}
+.trust{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:14px;color:rgba(245,241,234,.85)}
+.trust .dot{width:4px;height:4px;border-radius:50%;background:var(--ccs-teal)}
+
+/* problem */
+.problem{padding:96px 0}
+.problem h2{font-size:46px;max-width:720px}
+.problem .body{max-width:620px;margin-top:26px;font-size:18px;line-height:1.6;color:var(--ccs-ink-90)}
+.problem .body p+p{margin-top:16px}
+.problem .fix{color:var(--ccs-ink);font-weight:600}
+
+/* section heads */
+.sec-head{text-align:center;max-width:640px;margin:0 auto 52px}
+.sec-head h2{font-size:42px;margin-top:12px}
+.sec-head p{margin-top:14px;font-size:17px;color:var(--ccs-ink-50)}
+
+/* benefits */
+.benefits{background:var(--ccs-bone-warm);border-top:1px solid var(--ccs-line);border-bottom:1px solid var(--ccs-line);padding:92px 0}
+.bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.bcard{background:#fff;border:1px solid var(--ccs-line);border-radius:18px;padding:26px;box-shadow:var(--shadow-sm)}
+.bcard .ic{width:44px;height:44px;border-radius:12px;background:var(--ccs-indigo-soft);color:var(--ccs-indigo);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.bcard h3{font-family:var(--font-display);font-weight:600;font-size:18px}
+.bcard p{margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--ccs-ink-90)}
+.center-cta{text-align:center;margin-top:44px}
+
+/* how */
+.how{padding:96px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+.step{position:relative;padding:30px;border-radius:18px;background:var(--ccs-bone-deep)}
+.step .num{font-family:var(--font-serif);font-style:italic;font-weight:600;font-size:52px;color:var(--ccs-indigo);line-height:.9}
+.step h3{font-family:var(--font-display);font-weight:600;font-size:21px;margin-top:14px}
+.step p{margin-top:8px;font-size:15px;line-height:1.5;color:var(--ccs-ink-90)}
+
+/* proof */
+.proof{background:var(--ccs-ink);color:var(--ccs-bone);padding:92px 0;position:relative;overflow:hidden}
+.proof .pat{position:absolute;inset:0;background:url(assets/pattern-rally-ink.png) center/300px;opacity:.22}
+.proof .in{position:relative;z-index:2}
+.proof .sec-head h2{color:#fff}
+.proof .sec-head .eyebrow{color:var(--ccs-teal)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tcard{background:rgba(245,241,234,.05);border:1px solid var(--border-on-ink);border-radius:18px;padding:28px;display:flex;flex-direction:column}
+.tcard .q{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:22px;line-height:1.35;color:#fff}
+.tcard .who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:24px}
+.tcard .av{width:44px;height:44px;border-radius:50%;background:var(--ccs-indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:600;font-size:16px;flex-shrink:0}
+.tcard .nm{font-weight:600;font-size:14.5px;color:var(--ccs-bone)}
+.tcard .mt{font-size:12.5px;color:var(--text-on-ink-muted)}
+
+/* global tier */
+.global{padding:96px 0;background:var(--ccs-bone)}
+.gcard{position:relative;overflow:hidden;border-radius:26px;background:#0b0d18;color:var(--ccs-bone);box-shadow:var(--shadow-ink)}
+.gcard .pat{position:absolute;inset:0;background:url(assets/pattern-court-ink.png) center/170px;opacity:.22}
+.gcard .in{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;padding:56px 56px}
+.gcard .eyebrow{color:var(--ccs-teal)}
+.gcard h2{font-size:44px;color:#fff;margin-top:14px}
+.gcard p{margin-top:18px;font-size:16.5px;line-height:1.6;color:rgba(245,241,234,.82);max-width:440px}
+.passport{border:1px solid var(--border-on-ink);border-radius:18px;background:linear-gradient(160deg,#151827,#0b0d18);padding:26px;display:flex;flex-direction:column;justify-content:space-between;min-height:230px}
+.passport .top{display:flex;justify-content:space-between;align-items:flex-start}
+.passport .mono{height:40px;width:auto}
+.wl-form{display:flex;gap:10px;margin-top:26px;max-width:440px}
+.wl-form input{flex:1;min-width:0;background:rgba(245,241,234,.08);border:1px solid var(--border-on-ink);border-radius:12px;color:#fff;font-family:var(--font-body);font-size:15px;padding:14px 16px;outline:none}
+.wl-form input::placeholder{color:var(--text-on-ink-muted)}
+.wl-form input:focus{border-color:var(--ccs-teal)}
+.wl-micro{margin-top:12px;font-size:12.5px;color:var(--text-on-ink-muted)}
+.wl-success{display:none;margin-top:20px;background:rgba(70,201,193,.12);border:1px solid rgba(70,201,193,.4);border-radius:14px;padding:16px 18px;color:var(--ccs-teal);font-weight:600;font-size:15px;align-items:center;gap:10px}
+
+/* faq */
+.faq{padding:20px 0 96px}
+.faq-list{max-width:780px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--ccs-line)}
+.faq-q{width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--ccs-ink)}
+.faq-q .pm{flex-shrink:0;width:26px;height:26px;position:relative;transition:transform .3s var(--ease-standard)}
+.faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;background:var(--ccs-indigo);border-radius:2px}
+.faq-q .pm::before{left:0;right:0;top:12px;height:2px}
+.faq-q .pm::after{top:0;bottom:0;left:12px;width:2px;transition:opacity .3s}
+.faq-item.open .pm{transform:rotate(180deg)}
+.faq-item.open .pm::after{opacity:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .34s var(--ease-standard)}
+.faq-a p{padding:0 0 24px;font-size:16px;line-height:1.6;color:var(--ccs-ink-90);max-width:680px}
+
+/* final band */
+.final{background:var(--ccs-indigo);color:#fff;padding:90px 0;position:relative;overflow:hidden;text-align:center}
+.final .pat{position:absolute;inset:0;background:url(assets/pattern-court-indigo.png) center/150px;opacity:.3}
+.final .in{position:relative;z-index:2}
+.final h2{font-size:48px;color:#fff}
+.final p{margin-top:16px;font-size:19px;color:rgba(255,255,255,.9)}
+.final .cta{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:32px;flex-wrap:wrap}
+.final .wlink{color:#fff;text-decoration:underline;text-underline-offset:4px;font-weight:500}
+.final .wlink:hover{opacity:.8}
+
+/* footer */
+.footer{background:var(--ccs-ink);color:var(--ccs-bone);padding:64px 0 36px}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.foot-brand{max-width:300px}
+.foot-brand p{margin-top:16px;font-size:14.5px;line-height:1.55;color:var(--text-on-ink-muted)}
+.foot-nav{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+.foot-nav a{font-size:14.5px;color:var(--ccs-bone);opacity:.85}
+.foot-nav a:hover{opacity:1}
+.socials{display:flex;gap:12px;margin-top:20px}
+.socials a{width:40px;height:40px;border-radius:10px;border:1px solid var(--border-on-ink);display:flex;align-items:center;justify-content:center;color:var(--ccs-bone)}
+.socials a:hover{background:rgba(245,241,234,.08)}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid var(--border-on-ink);font-size:12.5px;color:var(--text-on-ink-muted)}
+.foot-bottom a{color:var(--text-on-ink-muted);text-decoration:underline;text-underline-offset:2px}
+
+/* icons */
+svg.ic-svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:920px){
+  .bgrid{grid-template-columns:repeat(2,1fr)}
+  .gcard .in{grid-template-columns:1fr;padding:40px 32px}
+  .hero h1{font-size:56px}
+}
+@media(max-width:720px){
+  .wrap{padding:0 22px}
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .mobile-menu.show{display:block;border-top:1px solid var(--ccs-line);background:var(--ccs-bone)}
+  .mobile-menu .wrap{padding:16px 22px 22px;display:flex;flex-direction:column;gap:4px}
+  .mobile-menu a{padding:12px 0;font-size:17px;font-weight:500;border-bottom:1px solid var(--ccs-line)}
+  .mobile-menu .btn{margin-top:14px}
+  .hero{min-height:560px}
+  .hero h1{font-size:42px}
+  .hero p.sub{font-size:17px}
+  .hero-cta{gap:12px}
+  .hero-cta .btn{width:100%}
+  .problem{padding:64px 0}
+  .problem h2{font-size:32px}
+  .problem .body{font-size:16.5px}
+  .sec-head h2{font-size:31px}
+  .benefits,.how,.proof,.global{padding:64px 0}
+  .bgrid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}
+  .gcard h2{font-size:33px}
+  .wl-form{flex-direction:column}
+  .wl-form .btn{width:100%}
+  .faq-q{font-size:17px}
+  .final{padding:64px 0}
+  .final h2{font-size:34px}
+  .final .cta{flex-direction:column;gap:14px}
+  .final .cta .btn{width:100%}
+  .foot-top{flex-direction:column;gap:28px}
+}
+</style></head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <img src="assets/monogram-ink.png" alt="Crosscourt Social">
+      <span class="bt">Crosscourt<small>Social</small></span>
+    </a>
+    <nav class="nav-links">
+      <a class="n" href="#membership">Membership</a>
+      <a class="n" href="#global">Global Waitlist</a>
+      <a class="n" href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-sm" href="#" data-checkout>Join</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="wrap">
+      <a href="#membership">Membership</a>
+      <a href="#global">Global Waitlist</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="#" data-checkout>Become a Member — €20/month</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-in">
+    <h1 class="display">Padel is better<br>with people.</h1>
+    <p class="sub">Crosscourt Social is Mallorca's padel community. Organised weekly play, every level welcome, and a group of people who'll actually text you back about a game.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#" data-checkout>Become a Member — €20/month</a>
+      <a class="btn btn-ghost ghost-onimg" href="#global">Join the Global Waitlist</a>
+    </div>
+    <div class="trust"><span>1,500+ players in the network</span><span class="dot"></span><span>Playing every week across Mallorca</span></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem"><div class="wrap">
+  <h2 class="display">You don't need another court. You need a game.</h2>
+  <div class="body">
+    <p>Mallorca has courts everywhere. What it doesn't have is an easy way in. You move here, or you pick up a racket, and then what? WhatsApp groups that go quiet. Levels that don't match. Bookings that fall apart.</p>
+    <p class="fix">Crosscourt fixes the part that's actually hard: the people.</p>
+  </div>
+</div></section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="membership"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">Local Membership · €20/month</div>
+    <h2 class="display">What membership gets you</h2>
+  </div>
+  <div class="bgrid">
+    <div class="bcard">
+      <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+      <h3>Weekly organised play</h3><p>Sessions arranged for you, matched to your level. Turn up and play.</p>
+    </div>
+    <div class="bcard">
+      <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6L12 20l-5 2.4 1-5.6-4-4 5.6-.8z"/></svg></div>
+      <h3>Priority spots</h3><p>Members book first. Sessions fill fast; you're never scrambling.</p>
+    </div>
+    <div class="bcard">
+      <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 6a3 3 0 0 1 0 6M21.5 20a6 6 0 0 0-4-5.6"/></svg></div>
+      <h3>A real community</h3><p>Socials, tournaments, post-match dinners. Half the point is what happens off court.</p>
+    </div>
+    <div class="bcard">
+      <div class="ic"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></div>
+      <h3>Every level welcome</h3><p>From first-timers to competitive players. We match games so everyone gets a proper hit.</p>
+    </div>
+  </div>
+  <div class="center-cta"><a class="btn btn-primary" href="#" data-checkout>Become a Member — €20/month</a></div>
+</div></section>
+
+<!-- HOW -->
+<section class="how"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">How it works</div><h2 class="display">Three steps to your next game</h2></div>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><h3>Join</h3><p>€20/month, cancel anytime.</p></div>
+    <div class="step"><div class="num">2</div><h3>Pick your sessions</h3><p>Weekly play across Mallorca, matched to your level.</p></div>
+    <div class="step"><div class="num">3</div><h3>Show up</h3><p>We handle the organising. You just play.</p></div>
+  </div>
+</div></section>
+
+<!-- PROOF -->
+<section class="proof"><div class="pat"></div><div class="wrap in">
+  <div class="sec-head"><div class="eyebrow">From the members</div><h2 class="display">People who came for padel, and stayed for the rest.</h2></div>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="q">"I moved to Mallorca knowing nobody. Six months later my whole social life runs through Crosscourt."</div>
+      <div class="who"><div class="av">M</div><div><div class="nm">Marta</div><div class="mt">Member since Jan 2026</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="q">"The level matching is the thing. Every game is competitive but fun."</div>
+      <div class="who"><div class="av">T</div><div><div class="nm">Tomás</div><div class="mt">Member since Sep 2025</div></div></div>
+    </div>
+    <div class="tcard">
+      <div class="q">"I came for the padel. I stayed for the dinners after."</div>
+      <div class="who"><div class="av">E</div><div><div class="nm">Elin</div><div class="mt">Member since Mar 2026</div></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- GLOBAL TIER -->
+<section class="global" id="global"><div class="wrap">
+  <div class="gcard"><div class="pat"></div><div class="in">
+    <div>
+      <div class="eyebrow">Coming soon</div>
+      <h2 class="display">One card. Padel anywhere.</h2>
+      <p>We're building a global tier: one Crosscourt membership, playing access at vetted partner clubs around the world. Mallorca first, then a curated network of clubs across Spain, the UK and the US.</p>
+      <p>It opens to the waitlist before anyone else, at a founding-member rate. Free to join the list. No payment until it's real.</p>
+      <form class="wl-form" id="wlForm">
+        <input type="email" id="wlEmail" placeholder="you@email.com" required aria-label="Email address">
+        <button class="btn btn-teal" type="submit">Join the Waitlist</button>
+      </form>
+      <div class="wl-micro">Invite-first. Waitlist members get first access and founding pricing.</div>
+      <div class="wl-success" id="wlSuccess">
+        <svg class="ic-svg" viewBox="0 0 24 24" style="width:20px;height:20px;stroke:var(--ccs-teal)"><path d="M20 6 9 17l-5-5"/></svg>
+        You're on the list. We'll be in touch first.
+      </div>
+    </div>
+    <div class="passport">
+      <div class="top">
+        <div class="eyebrow" style="color:var(--ccs-teal)">Global · Founding</div>
+        <img class="mono" src="assets/monogram-bone.png" alt="">
+      </div>
+      <div>
+        <div class="serif" style="font-size:30px;color:#fff">Padel, anywhere.</div>
+        <div style="font-size:13px;letter-spacing:.14em;color:var(--text-on-ink-muted);margin-top:10px;font-family:var(--font-body)">MEMBER · No. ____ · WAITLIST</div>
+      </div>
+    </div>
+  </div></div>
+</div></section>
+
+<!-- FAQ -->
+<section class="faq" id="faq"><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Good to know</div><h2 class="display">Questions, answered</h2></div>
+  <div class="faq-list" id="faqList">
+    <div class="faq-item"><button class="faq-q">Do I need to be good at padel?<span class="pm"></span></button><div class="faq-a"><p>No. We run sessions across all levels and match games so everyone gets a real hit. Total beginners are welcome.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Where do you play?<span class="pm"></span></button><div class="faq-a"><p>Across partner courts on Mallorca. Session locations and times go out to members weekly.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Can I cancel anytime?<span class="pm"></span></button><div class="faq-a"><p>Yes. Membership is monthly, no lock-in.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Do I need a partner or a group?<span class="pm"></span></button><div class="faq-a"><p>No, that's the point. Come alone; we'll sort the game.</p></div></div>
+    <div class="faq-item"><button class="faq-q">What's the Global Membership?<span class="pm"></span></button><div class="faq-a"><p>A separate tier we're launching soon: one card that gets you playing access at partner clubs internationally. Join the waitlist and you'll be first in.</p></div></div>
+  </div>
+</div></section>
+
+<!-- FINAL BAND -->
+<section class="final"><div class="pat"></div><div class="wrap in">
+  <h2 class="display">Your next game is already organised.</h2>
+  <p>Join Crosscourt Social. €20/month, cancel anytime.</p>
+  <div class="cta">
+    <a class="btn btn-bone" href="#" data-checkout>Become a Member</a>
+    <a class="wlink" href="#global">or join the Global Waitlist</a>
+  </div>
+</div></section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><img src="assets/monogram-bone.png" alt="" style="height:34px;width:auto"><span class="bt" style="color:var(--ccs-bone)">Crosscourt<small style="color:var(--ccs-teal)">Social</small></span></a>
+      <p>Crosscourt Social — Mallorca's padel community.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg class="ic-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="WhatsApp"><svg class="ic-svg" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.2-5.3A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 9.5c0 3.5 2.5 6 6 6 .6 0 1-.5 1-1 0-.3-.2-.6-.5-.7l-1.4-.5c-.3-.1-.6 0-.8.2l-.3.4c-1-.4-1.8-1.2-2.2-2.2l.4-.3c.2-.2.3-.5.2-.8l-.5-1.4c-.1-.3-.4-.5-.7-.5-.5 0-1 .4-1 1z" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <nav class="foot-nav">
+      <a href="#membership">Membership</a>
+      <a href="#global">Global Waitlist</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:hola@crosscourt.social">Contact</a>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Crosscourt Social</span>
+    <span><a href="#">Privacy Policy</a> · <a href="#">Terms</a></span>
+  </div>
+</div></footer>
+
+<script>
+// mobile menu
+var mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
+mb.addEventListener('click',function(){var open=mm.classList.toggle('show');mb.setAttribute('aria-expanded',open)});
+mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('show');mb.setAttribute('aria-expanded',false)})});
+// faq accordion
+document.querySelectorAll('.faq-item').forEach(function(item){
+  var q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');
+  q.addEventListener('click',function(){
+    var isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null});
+    if(!isOpen){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  });
+});
+// waitlist form
+var wf=document.getElementById('wlForm');
+wf.addEventListener('submit',function(e){
+  e.preventDefault();
+  var email=document.getElementById('wlEmail').value.trim();
+  if(!email)return;
+  // placeholder endpoint — POST would go here
+  wf.style.display='none';
+  document.querySelector('.wl-micro').style.display='none';
+  document.getElementById('wlSuccess').style.display='flex';
+});
+// checkout placeholders
+document.querySelectorAll('[data-checkout]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();/* -> Stripe checkout */})});
+</script>
+</body></html>
