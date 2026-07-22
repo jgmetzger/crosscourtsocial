@@ -1,0 +1,39 @@
+/* Crosscourt Social — Typography
+   A geometric display (Space Grotesk), a quiet text face (Inter Tight),
+   a serif soul (Cormorant Garamond, for editorial moments & numerals only). */
+:root {
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter Tight', 'Segoe UI', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+
+  /* Weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+
+  /* Display scale (Space Grotesk) */
+  --text-display-xl: 72px;
+  --text-display-lg: 56px;
+  --text-display-md: 40px;
+  --text-display-sm: 30px;
+
+  /* Heading / body (Inter Tight) */
+  --text-title: 24px;
+  --text-lg: 20px;
+  --text-base: 16px;   /* 16/24 default */
+  --text-sm: 14px;
+  --text-xs: 12px;
+
+  /* Line heights */
+  --lh-tight: 1.05; /* @kind font */
+  --lh-snug: 1.2; /* @kind font */
+  --lh-body: 1.5; /* @kind font */
+
+  /* Tracking — the wordmark and eyebrows are tracked caps */
+  --tracking-wordmark: 0.22em;
+  --tracking-eyebrow: 0.16em;
+  --tracking-caps: 0.08em;
+  --tracking-normal: 0;
+  --tracking-tight: -0.01em;
+}

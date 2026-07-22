@@ -1,0 +1,57 @@
+/* Crosscourt Social — Colour
+   Bone and ink carry the brand. Indigo leads; pink and teal are spices.
+   Balance: 60 bone · 25 ink · 10 indigo · 3 pink · 2 teal */
+:root {
+  /* Base palette */
+  --ccs-ink: #0E1020;          /* Text · the mark */
+  --ccs-bone: #F5F1EA;         /* Default ground */
+  --ccs-indigo: #5841EA;       /* Primary accent */
+  --ccs-pink: #F480D3;         /* Energy · highlight */
+  --ccs-teal: #46C9C1;         /* Membership · revenue */
+  --ccs-line: #E6E0D4;         /* Hairlines */
+  --ccs-white: #FFFFFF;
+
+  /* Ink tints (for text hierarchy on bone/white) */
+  --ccs-ink-90: #22243A;
+  --ccs-ink-70: #45475C;
+  --ccs-ink-50: #6E7082;
+  --ccs-ink-30: #A9AAB6;
+
+  /* Indigo scale */
+  --ccs-indigo-ink: #3B2AB0;   /* pressed / deep */
+  --ccs-indigo-soft: #EEEBFD;  /* tint surface */
+
+  /* Bone / surface scale */
+  --ccs-bone-deep: #EFE9DE;    /* card on bone */
+  --ccs-bone-warm: #FBF8F3;    /* raised surface */
+
+  /* Teal / pink tints */
+  --ccs-teal-soft: #E2F6F4;
+  --ccs-pink-soft: #FDECF8;
+
+  /* Semantic aliases */
+  --bg-page: var(--ccs-bone);
+  --bg-page-warm: var(--ccs-bone-warm);
+  --bg-inverse: var(--ccs-ink);
+  --surface-card: var(--ccs-white);
+  --surface-card-bone: var(--ccs-bone-deep);
+  --surface-raised: var(--ccs-bone-warm);
+
+  --text-strong: var(--ccs-ink);
+  --text-body: var(--ccs-ink-90);
+  --text-muted: var(--ccs-ink-50);
+  --text-on-ink: var(--ccs-bone);
+  --text-on-ink-muted: #9698AA;
+  --text-accent: var(--ccs-indigo);
+
+  --border-hairline: var(--ccs-line);
+  --border-strong: var(--ccs-ink);
+  --border-on-ink: rgba(245,241,234,0.14);
+
+  --accent-primary: var(--ccs-indigo);
+  --accent-primary-ink: var(--ccs-indigo-ink);
+  --accent-energy: var(--ccs-pink);
+  --accent-member: var(--ccs-teal);
+
+  --focus-ring: var(--ccs-indigo);
+}
